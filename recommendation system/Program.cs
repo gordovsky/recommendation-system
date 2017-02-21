@@ -28,12 +28,13 @@ namespace recommendation_system
             var dampedTop10 = dm.OrderByDescending(x => x.Value).Take(10);
             foreach(var d in dampedTop10)
             {
-                Console.WriteLine("{0} damped mean: {1}. Similar to ",task.GetMovieName(d.Key), d.Value);
+                string similar = task.GetMovieName(task.GetMostSimilar(d.Key));
+                Console.WriteLine("{0} damped mean: {1}. Similar to {2}",task.GetMovieName(d.Key), d.Value, similar);
             }
 
             //var fdsx = task.SimilarityValue(4324, 4234);
             
-            string similar = task.GetMovieName(task.GetMostSimilar(8));
+            //string similar = task.GetMovieName(task.GetMostSimilar(8));
             Console.ReadKey();
         }
     }

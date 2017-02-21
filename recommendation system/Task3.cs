@@ -100,12 +100,16 @@ namespace recommendation_system
             double value = double.MinValue;
             foreach(var movie in movies)
             {
-                var currentValue = SimilarityValue(id, movie.Key, ref movies);
-                if (currentValue > value)
+                if (id != movie.Key)
                 {
-                    value = currentValue;
-                    mostSimilarId = movie.Key;
+                    var currentValue = SimilarityValue(id, movie.Key, ref movies);
+                    if (currentValue > value)
+                    {
+                        value = currentValue;
+                        mostSimilarId = movie.Key;
+                    }
                 }
+
             }
             return mostSimilarId;
         }
