@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,20 +74,13 @@ namespace recommendation_system
             int my = 3;
             var movies = _ratings.GroupBy(r => r[1])
                                 .Select(group => new { id = group.Key, ratings = group.ToList() });
-            //var movies = from m in _movies
-            //             join r in _ratings on m[0] equals r[1] into ratedM
-            //             from sub in ratedM.DefaultIfEmpty()
-            //             select new {id = m[0], ratings = sub} 
-            //Dictionary<Int64, double> outerMovies = _movies.Where(x => !movies.Any(y => y.id == x[0]))
-            //                                                .Select(x => new KeyValuePair<Int64, double>(Int64.Parse(x[0]), 3))
-            //                                                .ToDictionary(x => x.Key, x => x.Value);
-
+            
             foreach (var m in movies)
             {
                 double sumRate = 0;
                 foreach(var rate in m.ratings)
                 {
-                    sumRate += double.Parse(rate[2]);
+                    sumRate += double.Parse(rate[2], CultureInfo.InvariantCulture);
                 }
                 double mean = (sumRate + k * my) / (m.ratings.Count + k);
                 result.Add(Int64.Parse(m.id), mean);
@@ -109,7 +103,6 @@ namespace recommendation_system
                         mostSimilarId = movie.Key;
                     }
                 }
-
             }
             return mostSimilarId;
         }
