@@ -40,7 +40,9 @@ namespace recommendation_system
                                     { true, true, false, false, true, false, false, true, true, true, true, true, true, false},
                                     { true, true, false, false, true, false, false, true, false, true, true, false, false, false},
 
-                                    { false, false, false, false, false, false, false, true, true, true, true, true, true, true},
+
+                                    { false, true, true, false, true, true, true, false, false, false, false, false, false, true},
+                                    //{ false, false, false, false, false, false, false, true, true, true, true, true, true, true},
                                   };
         }
 
@@ -48,22 +50,40 @@ namespace recommendation_system
         {
             double result = 1;
             var labelsCount = _labels.Where(x => x == label).Count();
-            for (int i = 0; i < _labels.Length; i++)
+            for (int i = 0; i < _keywords.Length; i++)
             {
-                if (_labels[i] == label)
-                {
-                    double keywordP;
+
+                //if (_labels[i] == label)
+                //{
+                    double keywordP = 1;
                     double goodKeyWordsCount = 0;
-                    for (int j = 0; j< _movies.Length-1; j++)
+                    for (int j = 0; j < _movies.Length - 1; j++)
                     {
-                        if (_matrix[i, j])
+                        if (_matrix[j, i] == _matrix[14, i] && _labels[j] == label)
                             goodKeyWordsCount++;
                     }
-                    keywordP = goodKeyWordsCount / labelsCount;
+                    if (goodKeyWordsCount!=0)
+                        keywordP = goodKeyWordsCount / labelsCount;
 
                     result = result * keywordP;
-                }
+                //}
             }
+            //for (int i = 0; i < _labels.Length; i++)
+            //{
+            //    if (_labels[i] == label)
+            //    {
+            //        double keywordP;
+            //        double goodKeyWordsCount = 0;
+            //        for (int j = 0; j< _movies.Length-1; j++)
+            //        {
+            //            if (_matrix[i, j])
+            //                goodKeyWordsCount++;
+            //        }
+            //        keywordP = goodKeyWordsCount / labelsCount;
+
+            //        result = result * keywordP;
+            //    }
+            //}
             return result;
         }
 
