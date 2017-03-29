@@ -22,7 +22,8 @@ namespace recommendation_system
                                     };
             _labels = new bool[] { true, true, true, true, true, true, true,
                                    false, false, false, false, false, false, false };
-            _keywords = new string[] { "3d", "drama", "surreal", "cult", "action", "classic", "atmospheric", "adventure", "fantasy", "epic", "magic", "dwarf", "elf", "music" };
+            _keywords = new string[] { "3d", "drama", "surreal", "cult", "action", "classic", "atmospheric", "adventure", "fantasy",
+                                    "epic", "magic", "dwarf", "elf", "music" };
             _matrix = new bool[,] {
                                     { false, true , true, false, false, false, true, true, false, false, false, false, false, false },
                                     { false, true, true, true, false, true, true, false, false, false, false, false, false, true},
@@ -40,9 +41,8 @@ namespace recommendation_system
                                     { true, true, false, false, true, false, false, true, true, true, true, true, true, false},
                                     { true, true, false, false, true, false, false, true, false, true, true, false, false, false},
 
-
-                                    { false, true, true, false, true, true, true, false, false, false, false, false, false, true},
-                                    //{ false, false, false, false, false, false, false, true, true, true, true, true, true, true},
+                                    //{ false, true, true, false, true, true, true, false, false, false, false, false, false, true},
+                                    { false, false, false, false, false, false, false, true, true, true, true, true, true, true},
                                   };
         }
 

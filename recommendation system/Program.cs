@@ -15,9 +15,19 @@ namespace recommendation_system
         static void Main(string[] args)
         {
 
-            NBC nbc = new NBC();
-            nbc.Verdict();
+            SlopeOne slope = new SlopeOne();
 
+            slope.ReadData(@"C:\Users\Admin\Desktop\Assignment7.csv");
+            //slope.Run();
+
+            var rate = slope.PredictFor(1,1);
+
+            //NBC nbc = new NBC();
+            //nbc.Verdict();
+
+            Console.WriteLine("Rate: {0}", rate);
+
+            //Console.WriteLine
             //var x = nbc.Probability(true);
             //var y = nbc.Probability(false);
 
